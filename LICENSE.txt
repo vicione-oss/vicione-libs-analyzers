@@ -1,0 +1,170 @@
+General license terms for the permanent provision of ifm standard software
+
+
+Preamble 
+
+You are purchasing standard software from ifm in order to use it for your applications or for 
+the applications of your customers.
+
+
+Section 1 - Subject matter of the agreement
+
+(1)	The subject matter of this agreement is the permanent provision of the computer program 
+referred to in the pertaining product description including the associated user documentation 
+("contract software") against payment and free of charge and the granting of the rights of use for 
+the software described in section 2. The hardware and software environment necessary for the 
+use of the contract software is also specified in the product description.
+
+(2)	The contract software and the user documentation are available on the website. If the software is 
+protected by a license key, you shall receive the license key exclusively for the use of the 
+software as specified in these terms, the product description and the user documentation.
+
+(3)	The functionality of the contract software is fully apparent from the product description. The 
+specifications therein shall be understood as a service description and cannot be construed to 
+constitute a guarantee. A guarantee is only granted if it has been explicitly designated as such. 
+Installation and configuration services are not part of these terms.
+
+
+Section 2 - Granting of rights
+
+(1)	Unless otherwise specified (e.g. in the case of demo versions), you are granted a non-exclusive 
+right to use the contract software, unlimited in time, to the extent granted in these terms and in 
+the product description. The contract software may only be used on one device or one virtual 
+machine per purchased license. The permitted use includes the installation of the contractual 
+software, loading into memory and use in accordance with the intended purpose. Under no 
+circumstances shall you be entitled to make the purchased contract software available for hire or 
+sublicense it in other ways, to publicly reproduce it or make it accessible via wired or wireless 
+communication means, or to make it available to third parties in return for payment or free of 
+charge, e.g. by way of Application Service Providing or Software as a Service. This shall have no 
+effect on the validity of para. 4.
+
+(2)	You shall be entitled to create a backup copy of the contract software if this is deemed 
+necessary for its continued use. You undertake to visibly affix the word "Backup copy" as well as 
+a copyright notice referring to ifm on the backup copy created by you.
+
+(3)	You shall be entitled to decompile and duplicate the contract software to the extent permitted by 
+law.
+
+(4)	You shall be entitled to permanently permit the use of the purchased copy of the contract 
+software to a third party by transferring the license certificate and the documentation. In this 
+case, you shall fully cease the use of the program, delete any installed copies of the program 
+from your computers and delete any copies on other data storage media or transfer these copies 
+to us, provided that you are not required by law to retain such copies for a longer period. Upon 
+our request, you undertake to confirm in written form that the mentioned measures have been 
+carried out in full or, if necessary, to state reasons for a longer retention period. In addition, you 
+shall explicitly agree with the third party to comply with the scope of the granting of rights under 
+this section 2. 
+
+(5)	If you use the contract software in a manner that qualitatively (in terms of the nature of the 
+permitted use) or quantitatively (in terms of the number of purchased licenses) exceeds the 
+purchased rights of use, you undertake to purchase the remaining rights immediately. If you fail 
+to do so, we shall be entitled to assert our rights in accordance with this agreement.
+
+(6)	Copyright notices, serial numbers or other features serving to identify the program must not be 
+removed from the contract software or altered.
+
+
+Section 3 - Warranty 
+
+(1)	In the event that the contract software is made available against payment, we shall warrant the 
+agreed quality of the contractual software pursuant to the following provisions, and that you can 
+use the contractual software without breaching the rights of third parties. 
+ 
+ The warranty shall not apply to defects attributable to the use of the contract software in a 
+hardware or software environment that is incompatible with the requirements stipulated in these 
+terms and the product description or to alterations and modifications you have made to the 
+software without being entitled to do so pursuant to law or these terms or by our prior written 
+consent.
+
+(2)	You undertake to examine the contract software promptly after receipt for apparent defects and 
+to promptly notify us of such defects; otherwise, any warranty for such defects shall be excluded. 
+The same shall apply to cases where such defects become apparent at a later stage.
+
+(3)	In the event of a material defect we shall initially be entitled to subsequent performance, i.e., at 
+our choice, to remedy the defect ("rectification") or to deliver a replacement. If a replacement is 
+provided, you may receive a more recent software version, except where this results in 
+unreasonable impairments.  In the event of defects of title, we shall, at our option, procure a 
+legally valid means of using the contract software or modify it in such a way that it no longer 
+infringes any third party rights. 
+
+(4)	We shall be entitled to provide the warranty services at your premises. We shall also meet our 
+obligation to rectify defects by making updates available for download through an automatic 
+installation routine on our website, and by offering you telephone support to help resolve any 
+installation issues that may arise.
+
+(5)	This does not affect your right to reduce the purchase price or rescind the contract if efforts to 
+provide a remedy or replacement delivery fail twice. The right to rescind the contract is excluded 
+in the event of insignificant defects. If you claim compensation for damages or futile expenses, 
+our liability shall be governed by section 4.
+
+(6)	With the exception of claims for damages, warranty claims on the basis of material defects shall 
+be subject to a statutory limitation period of two years. If a data carrier is sold, the statutory 
+limitation period shall start upon delivery of the contract software, in the event of a sale involving 
+a download from the Internet, it shall start upon notification and activation of the access data for 
+the download section. Claims for damages and claims for reimbursement of futile expenses shall 
+be governed by section 4.
+
+(7)	If a maintenance contract exists between the parties, the time limit for removal of defects shall be 
+determined by the periods stipulated therein.
+
+
+Section 4 - Liability
+
+(1)	Unless agreed otherwise in individual cases, we shall be liable in accordance with this section 4.
+In accordance with this section 4, we shall be liable without limitation
+
+-	in case of intent or gross negligence;
+-	in case of damage to life, limb or health;
+-	pursuant to the provisions of the German Product Liability Act; and
+-	under a warranty assumed.
+
+(2)	In the event of a breach of obligation due to slight negligence, where the said obligation is 
+essential for fulfilling the purpose of the contract (cardinal obligation), our liability shall be limited 
+in amount to the damage that is foreseeable and typical for this type of business.
+
+(3)	 Any further liability on our part shall be excluded.
+
+(4)	The aforementioned limitation of liability shall also apply to the personal liability of our 
+employees, representatives and bodies.
+
+
+Section 5 - Security measures, right to carry out audits
+
+(1)	You shall take suitable measures to protect the contract software and, where applicable, the 
+online access data, from access by unauthorised third parties. In particular, all copies of the 
+contract software and access data must be kept in a safe place.
+
+(2)	On request, you shall allow us to verify the correct use of the contract software, and especially 
+whether you are using the program both qualitatively and quantitatively within the scope allowed 
+by the acquired licenses. For this purpose, you shall provide us with information, let us inspect 
+relevant documents and files and enable us, or an auditing company appointed by us which is 
+acceptable to you, to examine the hardware and software environment employed. We may carry 
+out the audit at your premises during regular business hours, or may have it carried out by a third 
+party who is bound by professional secrecy. We shall ensure that such activities at your 
+premises will have the least possible impact on your business operations. If it follows from the 
+audit the number of licenses used exceeds the number of licenses acquired by more than 5% 
+(five percent) or that there are other usages not in keeping with the contract, you shall bear the 
+costs of the audit; otherwise the costs shall be borne by us. 
+
+
+Section 6 - Miscellaneous
+
+(1)	You shall be able to transfer to third parties any claims against us based upon this contract only 
+following our written consent. This shall have no effect on the validity of section 2 para. 4.
+
+(2)	Any terms of business which may contradict these license terms shall be inapplicable.
+
+(3)	The parties are aware that the contract software may be subject to export or import restrictions. 
+In particular, there may be obligations to obtain permission, or the use of the software or 
+associated technologies abroad may be subject to restrictions. Applicable export and import 
+control provisions of the Federal Republic of Germany, the European Union and the United 
+States of America as well as any other applicable regulations have to be adhered to. Our 
+performance of the contract is subject to the proviso that there are no obstacles to performance 
+due to national and international regulations of export and import law or any other legal 
+provisions.
+
+(4)	This contract shall be governed by the law of the country in which ifm is headquartered. The 
+application of the United Nations Convention on Contracts for the International Sale of Goods of 
+11 April 1980 (UN Sales Convention) shall be excluded.
+
+(5)	Place of jurisdiction is at the place of business of ifm.

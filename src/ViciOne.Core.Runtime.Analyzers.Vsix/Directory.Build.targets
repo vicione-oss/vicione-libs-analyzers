@@ -1,0 +1,20 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="UpdateVSIXVersion" BeforeTargets="PrepareForBuild" Condition="$(PackageVersion) != '' And $(PackageVersion) != '*Undefined*' And Exists('source.extension.vsixmanifest')">
+    <Message Importance="High" Text= "Updating VSIX Version to Version $(PackageVersion)" />
+    <XmlPoke 
+			XmlInputPath="source.extension.vsixmanifest"
+            Query="/n:PackageManifest/n:Metadata/n:Identity/@Version"
+            Value="$(PackageVersion)"
+			Namespaces="&lt;Namespace Prefix='n' Uri='http://schemas.microsoft.com/developer/vsx-schema/2011' Name='DoNotKnowWhatThisIsFor-ButItIsRequired' /&gt;">
+	</XmlPoke>
+  </Target>
+  <Target Name="UpdateVSIXPublisher" BeforeTargets="PrepareForBuild" Condition="$(Company) != '' And $(Company) != '*Undefined*' And Exists('source.extension.vsixmanifest')">
+    <Message Importance="High" Text= "Updating VSIX Publisher to $(Company)" />
+    <XmlPoke 
+			XmlInputPath="source.extension.vsixmanifest"
+            Query="/n:PackageManifest/n:Metadata/n:Identity/@Publisher"
+            Value="$(Company)"
+			Namespaces="&lt;Namespace Prefix='n' Uri='http://schemas.microsoft.com/developer/vsx-schema/2011' Name='DoNotKnowWhatThisIsFor-ButItIsRequired' /&gt;">
+	</XmlPoke>
+  </Target>
+</Project>
