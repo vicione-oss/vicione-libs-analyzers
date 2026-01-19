@@ -24,32 +24,46 @@
         <!--<TargetFramework>net7.0</TargetFramework>-->
         <Description>Code analyzers for ViciOne FunctionBlock development.</Description>
         <Product>ViciOne</Product>
-        <Company>ifm software</Company>
+        <Company>ifm software gmbh</Company>
         <Year>$([System.DateTime]::Now.Year)</Year>
         <Copyright>Copyright © $(Company) $(Year)</Copyright>
         <NeutralLanguage>en-US</NeutralLanguage>
         <SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
-        <!-- Codequalität erhöhen
+        <!-- Codequalität erhöhen -->
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-        -->
+        <NoWarn>$(NoWarn);EnableGenerateDocumentationFile</NoWarn> <!-- Workaround for https://github.com/dotnet/roslyn/issues/41640 -->
+        <!-- NuGet Lock File -->
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <RestoreLockedMode Condition="'$(CI)' == 'true'">true</RestoreLockedMode>
+        <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+        <DisableImplicitLibraryPacksFolder>true</DisableImplicitLibraryPacksFolder>
         <NuGetAuditMode>all</NuGetAuditMode>
     </PropertyGroup>
 
     <!-- Für Repos die Projekte enthalten die als NuGet Paket veröffentlicht werden -->
     <PropertyGroup>
-        <!--
-        Für die Kompatibilität mit .NET core müssen folgende Variablennamen verwendet werden:
-        https://docs.microsoft.com/de-de/nuget/reference/msbuild-targets
-        -->
-        <PackageProjectUrl>https://gitlab.i40.ifm-datalink.net/acx/vo-core/analyzers</PackageProjectUrl>
+        <!-- https://docs.microsoft.com/de-de/nuget/reference/msbuild-targets -->
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageProjectUrl>https://gitlab.com/vicione-oss/vicione/libs/analyzers</PackageProjectUrl>
         <Authors>$(Company)</Authors>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(MsBuildThisFileDirectory)\LICENSE.txt" Pack="true" PackagePath="" />
+    </ItemGroup>
 
     <!-- Testprojekten Zugriff auf intern sichtbaren Quellcode geben -->
     <ItemGroup Condition="$(MSBuildProjectDirectory.Contains('src'))">
         <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
     </ItemGroup>
+
+    <!-- Geschwindigkeitsoptimierung für die CI-Pipelines -->
+    <PropertyGroup Condition="'$(CI)' != ''">
+        <!--
+        <RunAnalyzers>false</RunAnalyzers>
+        -->
+    </PropertyGroup>
 
     <!-- Testprojekte sollen beim Veröffentlichen ignoriert und nicht als NuGet-Paket verpackt werden -->
     <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('Tests')) And $(MSBuildProjectDirectory.Contains('tests'))">
