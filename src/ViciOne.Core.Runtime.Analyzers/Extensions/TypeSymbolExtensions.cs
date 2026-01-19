@@ -16,7 +16,7 @@ internal static class TypeSymbolExtensions
 
     private static ITypeSymbol? GetRuntimeElementValueType(ITypeSymbol runtimeElementPropertyType, string runtimeElementInterfaceTypeName, Compilation compilation)
     {
-        var runtimeElementInterfaceType = compilation.GetTypeByMetadataName(runtimeElementInterfaceTypeName);
+        INamedTypeSymbol? runtimeElementInterfaceType = compilation.GetTypeByMetadataName(runtimeElementInterfaceTypeName);
         INamedTypeSymbol? interfaceType;
         if (SymbolEqualityComparer.Default.Equals(runtimeElementPropertyType.OriginalDefinition, runtimeElementInterfaceType))
             interfaceType = runtimeElementPropertyType as INamedTypeSymbol;

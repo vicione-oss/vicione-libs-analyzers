@@ -25,15 +25,15 @@ public abstract class FunctionBlockComponentDesignAttributeContextAnalyzer : Dia
     private void AnalyzeProperty(SymbolAnalysisContext context)
     {
         var propertySymbol = (IPropertySymbol)context.Symbol;
-        if (propertySymbol.HasFunctionBlockComponentDesignParentTypeStructure(out var parentType, out var parentsParentType) == false ||
+        if (propertySymbol.HasFunctionBlockComponentDesignParentTypeStructure(out INamedTypeSymbol? parentType, out INamedTypeSymbol? parentsParentType) == false ||
             parentsParentType!.HasFunctionBlockDesignAttribute(context.Compilation) == false)
             return;
 
-        var componentDesignAttributeType = context.Compilation.GetTypeByMetadataName(ComponentDesignAttributeTypeName);
+        INamedTypeSymbol? componentDesignAttributeType = context.Compilation.GetTypeByMetadataName(ComponentDesignAttributeTypeName);
         if (componentDesignAttributeType is null)
             return;
 
-        var componentDesignAttribute = propertySymbol.GetAttributesOfType(componentDesignAttributeType).FirstOrDefault();
+        AttributeData? componentDesignAttribute = propertySymbol.GetAttributesOfType(componentDesignAttributeType).FirstOrDefault();
         if (componentDesignAttribute is null)
             return;
 

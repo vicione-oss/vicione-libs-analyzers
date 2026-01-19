@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using ViciOne.Core.Runtime.Analyzers.Constants;
@@ -32,21 +33,21 @@ public class DefaultValueValueTypeAnalyzer : DiagnosticAnalyzer
         if (propertySymbol.IsFunctionBlockComponentDesign(context.Compilation) == false)
             return;
 
-        var correctDefaultValueAttributeType = context.Compilation.GetTypeByMetadataName(TypeNames.DefaultValueAttribute);
+        INamedTypeSymbol? correctDefaultValueAttributeType = context.Compilation.GetTypeByMetadataName(TypeNames.DefaultValueAttribute);
         if (correctDefaultValueAttributeType is null)
             return;
 
-        var correctDefaultValueAttributes = propertySymbol.GetAttributesOfType(correctDefaultValueAttributeType);
+        IEnumerable<AttributeData> correctDefaultValueAttributes = propertySymbol.GetAttributesOfType(correctDefaultValueAttributeType);
         if (correctDefaultValueAttributes.Any() == false)
             return;
 
-        var runtimeElementValueType = propertySymbol.Type.GetFunctionBlockComponentValueType(context.Compilation);
+        ITypeSymbol? runtimeElementValueType = propertySymbol.Type.GetFunctionBlockComponentValueType(context.Compilation);
         if (runtimeElementValueType is null)
             return;
 
-        foreach (var correctDefaultValueAttribute in correctDefaultValueAttributes)
+        foreach (AttributeData correctDefaultValueAttribute in correctDefaultValueAttributes)
         {
-            var attributeValueType = correctDefaultValueAttribute.ConstructorArguments[0].Type;
+            ITypeSymbol? attributeValueType = correctDefaultValueAttribute.ConstructorArguments[0].Type;
             if (SymbolEqualityComparer.Default.Equals(attributeValueType, runtimeElementValueType) == false)
                 context.ReportDiagnostic(Diagnostic.Create(s_rule, correctDefaultValueAttribute.GetArgumentLocation(0) ?? propertySymbol.Locations[0], propertySymbol.Name, attributeValueType, runtimeElementValueType));
         }

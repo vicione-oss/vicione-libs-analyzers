@@ -38,8 +38,8 @@ public sealed class FunctionBlockDesignBaseTypeAnalyzer : DiagnosticAnalyzer
 
     private static bool IsDerivedFromRuntimeFunctionBlock(ITypeSymbol type, Compilation compilation)
     {
-        var runtimeFunctionBlockType = compilation.GetTypeByMetadataName(TypeNames.RuntimeFunctionBlock);
-        var baseType = type.BaseType;
+        INamedTypeSymbol? runtimeFunctionBlockType = compilation.GetTypeByMetadataName(TypeNames.RuntimeFunctionBlock);
+        INamedTypeSymbol? baseType = type.BaseType;
         while (baseType is not null)
         {
             if (SymbolEqualityComparer.Default.Equals(baseType.OriginalDefinition, runtimeFunctionBlockType))

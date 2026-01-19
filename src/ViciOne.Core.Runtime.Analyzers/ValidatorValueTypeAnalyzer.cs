@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using ViciOne.Core.Runtime.Analyzers.Constants;
@@ -38,22 +39,22 @@ public class ValidatorValueTypeAnalyzer : DiagnosticAnalyzer
         if (propertySymbol.IsFunctionBlockComponentDesign(context.Compilation) == false)
             return;
 
-        var runtimeElementValueType = propertySymbol.Type.GetFunctionBlockComponentValueType(context.Compilation);
+        ITypeSymbol? runtimeElementValueType = propertySymbol.Type.GetFunctionBlockComponentValueType(context.Compilation);
         if (runtimeElementValueType is null)
             return;
 
-        foreach (var attributeTypeName in s_validatorAttributeNamesWithTypeArgument)
+        foreach (string attributeTypeName in s_validatorAttributeNamesWithTypeArgument)
         {
-            var attributeType = context.Compilation.GetTypeByMetadataName(attributeTypeName);
+            INamedTypeSymbol? attributeType = context.Compilation.GetTypeByMetadataName(attributeTypeName);
             if (attributeType is null)
                 continue;
 
-            var attributes = propertySymbol.GetAttributesOfType(attributeType);
-            foreach (var attribute in attributes)
+            IEnumerable<AttributeData> attributes = propertySymbol.GetAttributesOfType(attributeType);
+            foreach (AttributeData attribute in attributes)
             {
                 if (attribute.AttributeClass is null)
                     continue;
-                var attributeValueType = attribute.AttributeClass.TypeArguments[0];
+                ITypeSymbol attributeValueType = attribute.AttributeClass.TypeArguments[0];
                 if (SymbolEqualityComparer.Default.Equals(attributeValueType, runtimeElementValueType) == false)
                     context.ReportDiagnostic(Diagnostic.Create(s_rule, attribute.GetTypeArgumentLocation(0) ?? propertySymbol.Locations[0], propertySymbol.Name, attributeType.Name, attributeValueType, runtimeElementValueType));
             }
