@@ -13,16 +13,16 @@ public class ValidatorValueTypeAnalyzer : DiagnosticAnalyzer
         "Validator attribute must be used with correct value type argument",
         "Property '{0}' has {1} with type '{2}' as type argument assigned but was expected to have type '{3}' as type argument. Type argument needs to be changed to '{3}'.",
         RuleCategories.Design, DiagnosticSeverity.Warning, isEnabledByDefault: true);
-    private static readonly string[] s_validatorAttributeNamesWithTypeArgument = new[]
-    {
+    private static readonly string[] s_validatorAttributeNamesWithTypeArgument =
+    [
         TypeNames.EnumValidatorAttribute,
         TypeNames.EqualityValidatorAttribute,
         TypeNames.InequalityValidatorAttribute,
         TypeNames.RangeValidatorAttribute,
-    };
+    ];
 
     internal static DiagnosticDescriptor Rule => s_rule;
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(s_rule);
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [s_rule];
 
     public override void Initialize(AnalysisContext context)
     {

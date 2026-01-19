@@ -15,7 +15,7 @@ public sealed class DefaultValueAttributeAnalyzer : DiagnosticAnalyzer
         RuleCategories.Design, DiagnosticSeverity.Warning, isEnabledByDefault: true);
 
     internal static DiagnosticDescriptor Rule => s_rule;
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(s_rule);
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [s_rule];
 
     public override void Initialize(AnalysisContext context)
     {

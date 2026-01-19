@@ -10,7 +10,7 @@ public abstract class FunctionBlockComponentDesignAttributeContextAnalyzer : Dia
 {
     private protected abstract string ComponentDesignAttributeTypeName { get; }
     private protected abstract string ExpectedParentAttributeTypeName { get; }
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(GetRule());
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [GetRule()];
 
     private protected abstract DiagnosticDescriptor GetRule();
 
