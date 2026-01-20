@@ -7,9 +7,13 @@ default:
 
 Build:
   extends: .dotnet-build
+  variables:
+    PROJECT: 'ViciOne.Core.Runtime.Analyzers.CI.slnf'
 
 xUnit:
   extends: .dotnet-test-xunit
+  variables:
+    PROJECT: 'ViciOne.Core.Runtime.Analyzers.CI.slnf'
 
 Deploy NuGet:
   extends: .dotnet-deploy-nuget
