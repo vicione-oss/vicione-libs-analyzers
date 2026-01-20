@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using ViciOne.Core.Runtime.Analyzers.Constants;
 using ViciOne.Core.Runtime.Analyzers.Extensions;
@@ -15,7 +16,7 @@ public sealed class DefaultValueAttributeAnalyzer : DiagnosticAnalyzer
         RuleCategories.Design, DiagnosticSeverity.Warning, isEnabledByDefault: true);
 
     internal static DiagnosticDescriptor Rule => s_rule;
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(s_rule);
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [s_rule];
 
     public override void Initialize(AnalysisContext context)
     {
@@ -31,12 +32,12 @@ public sealed class DefaultValueAttributeAnalyzer : DiagnosticAnalyzer
         if (propertySymbol.IsFunctionBlockComponentDesign(context.Compilation) == false)
             return;
 
-        var correctDefaultValueAttributeType = context.Compilation.GetTypeByMetadataName(TypeNames.DefaultValueAttribute);
+        INamedTypeSymbol? correctDefaultValueAttributeType = context.Compilation.GetTypeByMetadataName(TypeNames.DefaultValueAttribute);
         if (correctDefaultValueAttributeType is null)
             return;
 
-        var defaultValueAttributes = propertySymbol.GetAttributesWithClassName(correctDefaultValueAttributeType.Name);
-        foreach (var defaultValueAttribute in defaultValueAttributes)
+        IEnumerable<AttributeData> defaultValueAttributes = propertySymbol.GetAttributesWithClassName(correctDefaultValueAttributeType.Name);
+        foreach (AttributeData defaultValueAttribute in defaultValueAttributes)
             if (SymbolEqualityComparer.Default.Equals(defaultValueAttribute.AttributeClass, correctDefaultValueAttributeType) == false)
                 context.ReportDiagnostic(Diagnostic.Create(s_rule, defaultValueAttribute.GetLocation() ?? propertySymbol.Locations[0], propertySymbol.Name, Namespaces.Attributes));
     }

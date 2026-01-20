@@ -7,9 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "type", Target = "~T:DefaultValueAttributeAnalyzerTests")]
 [assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "type", Target = "~T:DefaultValueValueTypeAnalyzerTests")]
-[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "type", Target = "~T:EnumValidatorArgumentValueTypeAnalyzerTests")]
 [assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "type", Target = "~T:FunctionBlockDesignBaseTypeAnalyzerTests")]
-[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "type", Target = "~T:RangeValidatorArgumentValueTypeAnalyzerTests")]
 [assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "type", Target = "~T:ValidatorValueTypeAnalyzerTests")]
 [assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "type", Target = "~T:InputConnectorDesignAttributeContextAnalyzerTests")]
 [assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "type", Target = "~T:OutputConnectorDesignAttributeContextAnalyzerTests")]

@@ -40,7 +40,7 @@ internal static class SymbolExtensions
 
     public static bool IsFunctionBlockComponentDesign(this ISymbol symbol, Compilation compilation)
     {
-        if (HasFunctionBlockComponentDesignParentTypeStructure(symbol, out var parentType, out var parentsParentType) == false)
+        if (HasFunctionBlockComponentDesignParentTypeStructure(symbol, out INamedTypeSymbol? parentType, out INamedTypeSymbol? parentsParentType) == false)
             return false;
 
         return

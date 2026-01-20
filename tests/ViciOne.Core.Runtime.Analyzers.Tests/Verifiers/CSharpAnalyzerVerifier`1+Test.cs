@@ -12,17 +12,16 @@ public static partial class CSharpAnalyzerVerifier<TAnalyzer>
     public class Test : CSharpAnalyzerTest<TAnalyzer, DefaultVerifier>
     {
         public Test()
-        {
-            SolutionTransforms.Add((solution, projectId) =>
-            {
-                var compilationOptions = solution.GetProject(projectId).CompilationOptions;
-                compilationOptions = compilationOptions.WithSpecificDiagnosticOptions(
-                    compilationOptions.SpecificDiagnosticOptions.SetItems(CSharpVerifierHelper.NullableWarnings));
-                solution = solution.WithProjectCompilationOptions(projectId, compilationOptions);
+            => SolutionTransforms.Add((solution, projectId)
+                =>
+                {
+                    var compilationOptions = solution.GetProject(projectId).CompilationOptions;
+                    compilationOptions = compilationOptions.WithSpecificDiagnosticOptions(
+                        compilationOptions.SpecificDiagnosticOptions.SetItems(CSharpVerifierHelper.NullableWarnings));
+                    solution = solution.WithProjectCompilationOptions(projectId, compilationOptions);
 
-                return solution;
-            });
-        }
+                    return solution;
+                });
 
         protected override ParseOptions CreateParseOptions() => ((CSharpParseOptions)base.CreateParseOptions()).WithLanguageVersion(VerifierOptions.LanguageVersion);
     }

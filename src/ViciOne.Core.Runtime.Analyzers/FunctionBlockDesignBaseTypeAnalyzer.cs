@@ -15,7 +15,7 @@ public sealed class FunctionBlockDesignBaseTypeAnalyzer : DiagnosticAnalyzer
         RuleCategories.Design, DiagnosticSeverity.Warning, isEnabledByDefault: true);
 
     internal static DiagnosticDescriptor Rule => s_rule;
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(s_rule);
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [s_rule];
 
     public override void Initialize(AnalysisContext context)
     {
@@ -38,8 +38,8 @@ public sealed class FunctionBlockDesignBaseTypeAnalyzer : DiagnosticAnalyzer
 
     private static bool IsDerivedFromRuntimeFunctionBlock(ITypeSymbol type, Compilation compilation)
     {
-        var runtimeFunctionBlockType = compilation.GetTypeByMetadataName(TypeNames.RuntimeFunctionBlock);
-        var baseType = type.BaseType;
+        INamedTypeSymbol? runtimeFunctionBlockType = compilation.GetTypeByMetadataName(TypeNames.RuntimeFunctionBlock);
+        INamedTypeSymbol? baseType = type.BaseType;
         while (baseType is not null)
         {
             if (SymbolEqualityComparer.Default.Equals(baseType.OriginalDefinition, runtimeFunctionBlockType))
