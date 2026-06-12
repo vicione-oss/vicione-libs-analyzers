@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.Testing;
 
 namespace Verifiers;
 
-public static partial class CSharpAnalyzerVerifier<TAnalyzer>
+internal static partial class CSharpAnalyzerVerifier<TAnalyzer>
     where TAnalyzer : DiagnosticAnalyzer, new()
 {
     /// <inheritdoc cref="AnalyzerVerifier{TAnalyzer, TTest, TVerifier}.Diagnostic()"/>
