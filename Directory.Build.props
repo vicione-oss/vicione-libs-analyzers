@@ -4,7 +4,7 @@
         <!--<Nullable>enable</Nullable>-->
         <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
         <!-- Allgemeine Informationen -->
-        <!--<TargetFramework>net7.0</TargetFramework>-->
+        <!--<TargetFramework>net10.0</TargetFramework>-->
         <Description>Code analyzers for ViciOne FunctionBlock development.</Description>
         <Product>ViciOne</Product>
         <Company>ifm software gmbh</Company>
