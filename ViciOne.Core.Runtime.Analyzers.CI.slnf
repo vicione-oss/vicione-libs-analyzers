@@ -1,6 +1,6 @@
 {
   "solution": {
-    "path": "ViciOne.Core.Runtime.Analyzers.sln",
+    "path": "ViciOne.Core.Runtime.Analyzers.slnx",
     "projects": [
       "src\\ViciOne.Core.Runtime.Analyzers.Package\\ViciOne.Core.Runtime.Analyzers.Package.csproj",
       "src\\ViciOne.Core.Runtime.Analyzers\\ViciOne.Core.Runtime.Analyzers.csproj",
