@@ -63,7 +63,7 @@ include:
       rules: *rules
       default_version: '0.1.0'
 ### CI Components ###
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-restore@v2.5.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-restore@2
     inputs:
       project: 'ViciOne.Core.Runtime.Analyzers.CI.slnf'
       image: ${IMAGE_NAME}
@@ -74,31 +74,35 @@ include:
       tags:
         - ${RUNNER_TAG}
   ### Test & Build
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-build@v2.5.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-build@2
     inputs:
       project: 'ViciOne.Core.Runtime.Analyzers.CI.slnf'
       image: ${IMAGE_NAME}
-      rules: *rules
+      rules:
+        - *rule_tag
       before_script:
         - *activate_mise
         - *update_nuget_source_ro
         - echo "$Version"
       tags:
         - ${RUNNER_TAG}
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-test@1.1.0
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-artifacts@2
     inputs:
       project: 'ViciOne.Core.Runtime.Analyzers.CI.slnf'
       image: ${IMAGE_NAME}
-      rules: *rules
-      build_job_name: "dotnet Build"
-      no_build: false
+      rules:
+        - *rule_default_branch
+        - *rule_mr
+        - *rule_web
       before_script:
         - *activate_mise
         - *update_nuget_source_ro
+      test: true
+      test_coverage: true
       tags:
         - ${RUNNER_TAG}
   ### NuGet Packages
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-pack@v2.5.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-pack@2
     inputs:
       project: 'ViciOne.Core.Runtime.Analyzers.CI.slnf'
       image: ${IMAGE_NAME}
@@ -108,11 +112,10 @@ include:
         - 'echo "PackageVersion: ${PackageVersion:-notAssigned}"'
       tags:
         - ${RUNNER_TAG}
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-nuget-push@v2.5.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-nuget-push@2
     inputs:
       image: ${IMAGE_NAME}
       source: "JFrogViciOne"
-      filename_pattern: "./src/*"
       rules: *rules_manual
       before_script:
         - *activate_mise
