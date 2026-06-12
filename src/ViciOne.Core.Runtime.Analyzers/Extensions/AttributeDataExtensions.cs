@@ -5,12 +5,15 @@ namespace ViciOne.Core.Runtime.Analyzers.Extensions;
 
 internal static class AttributeDataExtensions
 {
-    public static Location? GetLocation(this AttributeData attribute)
-        => attribute.ApplicationSyntaxReference?.SyntaxTree.GetLocation(attribute.ApplicationSyntaxReference.Span);
+    extension(AttributeData attribute)
+    {
+        public Location? GetLocation()
+            => attribute.ApplicationSyntaxReference?.SyntaxTree.GetLocation(attribute.ApplicationSyntaxReference.Span);
 
-    public static Location? GetArgumentLocation(this AttributeData attribute, int index)
-        => (attribute.ApplicationSyntaxReference?.GetSyntax() as AttributeSyntax)?.ArgumentList?.Arguments[index].GetLocation();
+        public Location? GetArgumentLocation(int index)
+            => (attribute.ApplicationSyntaxReference?.GetSyntax() as AttributeSyntax)?.ArgumentList?.Arguments[index].GetLocation();
 
-    public static Location? GetTypeArgumentLocation(this AttributeData attribute, int index)
-        => ((attribute.ApplicationSyntaxReference?.GetSyntax() as AttributeSyntax)?.Name as GenericNameSyntax)?.TypeArgumentList?.Arguments[index].GetLocation();
+        public Location? GetTypeArgumentLocation(int index)
+            => ((attribute.ApplicationSyntaxReference?.GetSyntax() as AttributeSyntax)?.Name as GenericNameSyntax)?.TypeArgumentList?.Arguments[index].GetLocation();
+    }
 }

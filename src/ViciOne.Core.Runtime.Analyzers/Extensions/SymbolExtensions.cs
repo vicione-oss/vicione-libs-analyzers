@@ -8,59 +8,61 @@ namespace ViciOne.Core.Runtime.Analyzers.Extensions;
 
 internal static class SymbolExtensions
 {
-    public static IEnumerable<AttributeData> GetAttributesOfType(this ISymbol symbol, INamedTypeSymbol attributeType)
-        => symbol.GetAttributes().Where(x =>
-            x.AttributeClass is not null &&
-                (SymbolEqualityComparer.Default.Equals(x.AttributeClass, attributeType) ||
-                (x.AttributeClass.IsGenericType && SymbolEqualityComparer.Default.Equals(x.AttributeClass.ConstructedFrom, attributeType))));
-
-    public static IEnumerable<AttributeData> GetAttributesWithClassName(this ISymbol symbol, string className)
-        => symbol.GetAttributes().Where(x => (x.AttributeClass?.Name ?? string.Empty).Equals(className, StringComparison.Ordinal));
-
-    public static bool HasAttribute(this ISymbol symbol, INamedTypeSymbol? attributeType)
-        => attributeType is not null && symbol.GetAttributesOfType(attributeType).Any();
-
-    public static bool HasAttribute(this ISymbol symbol, Compilation compilation, string attributeTypeName)
-        => symbol.HasAttribute(compilation.GetTypeByMetadataName(attributeTypeName));
-
-    public static bool HasFunctionBlockComponentDesignAttribute(this ISymbol symbol, Compilation compilation)
-        => symbol.HasAttribute(compilation, TypeNames.InputConnectorDesignAttribute) ||
-           symbol.HasAttribute(compilation, TypeNames.OutputConnectorDesignAttribute) ||
-           symbol.HasAttribute(compilation, TypeNames.PersistentVariableDesignAttribute) ||
-           symbol.HasAttribute(compilation, TypeNames.SettingDesignAttribute);
-
-    public static bool HasFunctionBlockComponentDesignsAttribute(this ISymbol symbol, Compilation compilation)
-        => symbol.HasAttribute(compilation, TypeNames.InputConnectorDesignsAttribute) ||
-           symbol.HasAttribute(compilation, TypeNames.OutputConnectorDesignsAttribute) ||
-           symbol.HasAttribute(compilation, TypeNames.PersistentVariableDesignsAttribute) ||
-           symbol.HasAttribute(compilation, TypeNames.SettingDesignsAttribute);
-
-    public static bool HasFunctionBlockDesignAttribute(this ISymbol symbol, Compilation compilation)
-        => symbol.HasAttribute(compilation, TypeNames.FunctionBlockDesignAttribute);
-
-    public static bool IsFunctionBlockComponentDesign(this ISymbol symbol, Compilation compilation)
+    extension(ISymbol symbol)
     {
-        if (HasFunctionBlockComponentDesignParentTypeStructure(symbol, out INamedTypeSymbol? parentType, out INamedTypeSymbol? parentsParentType) == false)
-            return false;
+        public IEnumerable<AttributeData> GetAttributesOfType(INamedTypeSymbol attributeType)
+            => symbol.GetAttributes().Where(x =>
+                x.AttributeClass is not null &&
+                    (SymbolEqualityComparer.Default.Equals(x.AttributeClass, attributeType) ||
+                    (x.AttributeClass.IsGenericType && SymbolEqualityComparer.Default.Equals(x.AttributeClass.ConstructedFrom, attributeType))));
 
-        return
-            symbol.HasFunctionBlockComponentDesignAttribute(compilation) &&
-            parentType!.HasFunctionBlockComponentDesignsAttribute(compilation) &&
-            parentsParentType!.HasFunctionBlockDesignAttribute(compilation);
-    }
+        public IEnumerable<AttributeData> GetAttributesWithClassName(string className)
+            => symbol.GetAttributes().Where(x => (x.AttributeClass?.Name ?? string.Empty).Equals(className, StringComparison.Ordinal));
 
-    public static bool HasFunctionBlockComponentDesignParentTypeStructure(this ISymbol symbol,
-        out INamedTypeSymbol? parentType, out INamedTypeSymbol? parentsParentType)
-    {
-        parentType = symbol.ContainingType;
-        parentsParentType = parentType?.ContainingType;
+        public bool HasAttribute(INamedTypeSymbol? attributeType)
+            => attributeType is not null && symbol.GetAttributesOfType(attributeType).Any();
 
-        if (parentType is null ||
-            parentsParentType is null ||
-            parentType.TypeKind != TypeKind.Class ||
-            parentsParentType.TypeKind != TypeKind.Class)
-            return false;
+        public bool HasAttribute(Compilation compilation, string attributeTypeName)
+            => symbol.HasAttribute(compilation.GetTypeByMetadataName(attributeTypeName));
 
-        return true;
+        public bool HasFunctionBlockComponentDesignAttribute(Compilation compilation)
+            => symbol.HasAttribute(compilation, TypeNames.InputConnectorDesignAttribute) ||
+               symbol.HasAttribute(compilation, TypeNames.OutputConnectorDesignAttribute) ||
+               symbol.HasAttribute(compilation, TypeNames.PersistentVariableDesignAttribute) ||
+               symbol.HasAttribute(compilation, TypeNames.SettingDesignAttribute);
+
+        public bool HasFunctionBlockComponentDesignsAttribute(Compilation compilation)
+            => symbol.HasAttribute(compilation, TypeNames.InputConnectorDesignsAttribute) ||
+               symbol.HasAttribute(compilation, TypeNames.OutputConnectorDesignsAttribute) ||
+               symbol.HasAttribute(compilation, TypeNames.PersistentVariableDesignsAttribute) ||
+               symbol.HasAttribute(compilation, TypeNames.SettingDesignsAttribute);
+
+        public bool HasFunctionBlockDesignAttribute(Compilation compilation)
+            => symbol.HasAttribute(compilation, TypeNames.FunctionBlockDesignAttribute);
+
+        public bool IsFunctionBlockComponentDesign(Compilation compilation)
+        {
+            if (HasFunctionBlockComponentDesignParentTypeStructure(symbol, out INamedTypeSymbol? parentType, out INamedTypeSymbol? parentsParentType) == false)
+                return false;
+
+            return
+                symbol.HasFunctionBlockComponentDesignAttribute(compilation) &&
+                parentType!.HasFunctionBlockComponentDesignsAttribute(compilation) &&
+                parentsParentType!.HasFunctionBlockDesignAttribute(compilation);
+        }
+
+        public bool HasFunctionBlockComponentDesignParentTypeStructure(out INamedTypeSymbol? parentType, out INamedTypeSymbol? parentsParentType)
+        {
+            parentType = symbol.ContainingType;
+            parentsParentType = parentType?.ContainingType;
+
+            if (parentType is null ||
+                parentsParentType is null ||
+                parentType.TypeKind != TypeKind.Class ||
+                parentsParentType.TypeKind != TypeKind.Class)
+                return false;
+
+            return true;
+        }
     }
 }
