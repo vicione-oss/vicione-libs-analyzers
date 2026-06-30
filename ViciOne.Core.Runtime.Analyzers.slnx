@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Projektmappenelemente/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="tests.runsettings" />
+    <File Path="VERSION" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/ViciOne.Core.Runtime.Analyzers.Package/ViciOne.Core.Runtime.Analyzers.Package.csproj" />
+    <Project Path="src/ViciOne.Core.Runtime.Analyzers.Vsix/ViciOne.Core.Runtime.Analyzers.Vsix.csproj" />
+    <Project Path="src/ViciOne.Core.Runtime.Analyzers/ViciOne.Core.Runtime.Analyzers.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ViciOne.Core.Runtime.Analyzers.Tests/ViciOne.Core.Runtime.Analyzers.Tests.csproj" />
+  </Folder>
+</Solution>

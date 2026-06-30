@@ -6,10 +6,10 @@ using Microsoft.CodeAnalysis.Testing;
 
 namespace Verifiers;
 
-public static partial class CSharpAnalyzerVerifier<TAnalyzer>
+internal static partial class CSharpAnalyzerVerifier<TAnalyzer>
     where TAnalyzer : DiagnosticAnalyzer, new()
 {
-    public class Test : CSharpAnalyzerTest<TAnalyzer, DefaultVerifier>
+    internal class Test : CSharpAnalyzerTest<TAnalyzer, DefaultVerifier>
     {
         public Test()
             => SolutionTransforms.Add((solution, projectId)

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="ViciOne.Core.Runtime.Analyzers.e1bc7d02-8df4-4b87-b3c9-0b1a37261263" Version="0.4.0" Language="en-US" Publisher="ifm software gmbh" />
+    <Identity Id="ViciOne.Core.Runtime.Analyzers.e1bc7d02-8df4-4b87-b3c9-0b1a37261263" Version="0.5.0" Language="en-US" Publisher="ifm software gmbh" />
     <DisplayName>ViciOne FunctionBlock code analyzers</DisplayName>
     <Description xml:space="preserve">Code analyzers for ViciOne FunctionBlock development.</Description>
   </Metadata>

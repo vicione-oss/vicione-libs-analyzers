@@ -6,13 +6,22 @@ namespace ViciOne.Core.Runtime.Analyzers.Extensions;
 
 internal static class TypeSymbolExtensions
 {
-    public static ITypeSymbol? GetFunctionBlockComponentValueType(this ITypeSymbol connectorPropertyType, Compilation compilation)
-        => GetConnectorValueType(connectorPropertyType, compilation) ??
-           GetPersistentVariableValueType(connectorPropertyType, compilation) ??
-           GetSettingValueType(connectorPropertyType, compilation);
+    extension(ITypeSymbol propertyType)
+    {
+        public ITypeSymbol? GetFunctionBlockComponentValueType(Compilation compilation)
+            => GetConnectorValueType(propertyType, compilation) ??
+               GetPersistentVariableValueType(propertyType, compilation) ??
+               GetSettingValueType(propertyType, compilation);
 
-    public static ITypeSymbol? GetConnectorValueType(this ITypeSymbol connectorPropertyType, Compilation compilation)
-        => GetRuntimeElementValueType(connectorPropertyType, TypeNames.IRuntimeConnector, compilation);
+        public ITypeSymbol? GetConnectorValueType(Compilation compilation)
+            => GetRuntimeElementValueType(propertyType, TypeNames.IRuntimeConnector, compilation);
+
+        public ITypeSymbol? GetPersistentVariableValueType(Compilation compilation)
+            => GetRuntimeElementValueType(propertyType, TypeNames.IRuntimePersistentVariable, compilation);
+
+        public ITypeSymbol? GetSettingValueType(Compilation compilation)
+            => GetRuntimeElementValueType(propertyType, TypeNames.IRuntimeSetting, compilation);
+    }
 
     private static ITypeSymbol? GetRuntimeElementValueType(ITypeSymbol runtimeElementPropertyType, string runtimeElementInterfaceTypeName, Compilation compilation)
     {
@@ -25,10 +34,4 @@ internal static class TypeSymbolExtensions
 
         return interfaceType?.TypeArguments.FirstOrDefault();
     }
-
-    public static ITypeSymbol? GetPersistentVariableValueType(this ITypeSymbol settingPropertyType, Compilation compilation)
-        => GetRuntimeElementValueType(settingPropertyType, TypeNames.IRuntimePersistentVariable, compilation);
-
-    public static ITypeSymbol? GetSettingValueType(this ITypeSymbol settingPropertyType, Compilation compilation)
-        => GetRuntimeElementValueType(settingPropertyType, TypeNames.IRuntimeSetting, compilation);
 }
