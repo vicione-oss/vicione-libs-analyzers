@@ -60,7 +60,7 @@ include:
     inputs:
       rules: *rules
 ### CI Components ###
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-restore@v2.6.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-restore@v2.7.1
     inputs:
       project: 'ViciOne.Core.Runtime.Analyzers.CI.slnf'
       image: ${IMAGE_NAME}
@@ -71,7 +71,7 @@ include:
       tags:
         - ${RUNNER_TAG}
   ### Test & Build
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-build@v2.6.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-build@v2.7.1
     inputs:
       project: 'ViciOne.Core.Runtime.Analyzers.CI.slnf'
       image: ${IMAGE_NAME}
@@ -82,7 +82,7 @@ include:
         - echo "$Version"
       tags:
         - ${RUNNER_TAG}
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-test@v2.6.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-test@v2.7.1
     inputs:
       project: 'ViciOne.Core.Runtime.Analyzers.CI.slnf'
       image: ${IMAGE_NAME}
@@ -98,7 +98,7 @@ include:
       tags:
         - ${RUNNER_TAG}
   ### NuGet Packages
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-pack@v2.6.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-pack@v2.7.1
     inputs:
       project: 'ViciOne.Core.Runtime.Analyzers.CI.slnf'
       image: ${IMAGE_NAME}
@@ -108,13 +108,18 @@ include:
         - 'echo "PackageVersion: ${PackageVersion:-notAssigned}"'
       tags:
         - ${RUNNER_TAG}
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-nuget-push@v2.6.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-nuget-push@v2.7.1
     inputs:
       image: ${IMAGE_NAME}
-      source: "JFrogViciOne"
+      sources:
+        - "JFrogViciOne"
       rules: *rules_manual
       before_script:
         - *activate_mise
         - *update_nuget_source_rw
       tags:
         - ${RUNNER_TAG}
+
+dotnet Test:
+  variables:
+    NUGET_PACKAGES: ${CI_PROJECT_DIR}/packages
