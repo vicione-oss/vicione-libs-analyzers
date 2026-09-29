@@ -1,9 +1,9 @@
-General license terms for the permanent provision of ifm standard software
+General license terms for the permanent provision of ViciOne open automation gmbh standard software
 
 
 Preamble 
 
-You are purchasing standard software from ifm in order to use it for your applications or for 
+You are purchasing standard software from ViciOne open automation gmbh in order to use it for your applications or for 
 the applications of your customers.
 
 
@@ -40,7 +40,7 @@ effect on the validity of para. 4.
 
 (2)	You shall be entitled to create a backup copy of the contract software if this is deemed 
 necessary for its continued use. You undertake to visibly affix the word "Backup copy" as well as 
-a copyright notice referring to ifm on the backup copy created by you.
+a copyright notice referring to ViciOne open automation gmbh on the backup copy created by you.
 
 (3)	You shall be entitled to decompile and duplicate the contract software to the extent permitted by 
 law.
@@ -163,8 +163,8 @@ performance of the contract is subject to the proviso that there are no obstacle
 due to national and international regulations of export and import law or any other legal 
 provisions.
 
-(4)	This contract shall be governed by the law of the country in which ifm is headquartered. The 
+(4)	This contract shall be governed by the law of the country in which ViciOne open automation gmbh is headquartered. The 
 application of the United Nations Convention on Contracts for the International Sale of Goods of 
 11 April 1980 (UN Sales Convention) shall be excluded.
 
-(5)	Place of jurisdiction is at the place of business of ifm.
+(5)	Place of jurisdiction is at the place of business of ViciOne open automation gmbh.
