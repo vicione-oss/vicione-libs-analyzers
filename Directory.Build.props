@@ -4,7 +4,7 @@
     <!-- General Information -->
     <Description>Code analyzers for ViciOne FunctionBlock development.</Description>
     <Product>ViciOne</Product>
-    <Company>ifm software gmbh</Company>
+    <Company>ViciOne open automation gmbh</Company>
     <Year>$([System.DateTime]::Now.Year)</Year>
     <Copyright>Copyright © $(Company) $(Year)</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
